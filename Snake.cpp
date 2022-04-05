@@ -11,7 +11,7 @@ bool gameOver = false;`
 enum direction { STOP = 0, LEFT, RIGHT, UP, DOWN};
 direction dir;
 
-void Startup() {
+void Startup() {	//Inititalising the values at the startup
 	x = width / 2;
 	y = height / 2;
 	fruitX = rand() % width + 1;
@@ -19,7 +19,7 @@ void Startup() {
 	score = 0;	
 }
 
-void Draw() {
+void Draw() {	//Drawing the fruit and the snake
 	system("cls");
 	for (int i = 0; i < height; ++i) {
 		for (int j = 0; j < width; ++j) {
@@ -37,7 +37,7 @@ void Draw() {
 	cout << endl << "Score: " << score << endl;
 }
 
-void Input() {
+void Input() {	//Handling the input from the user
 	if (_kbhit()) {
 		switch (_getch()) {
 		case 'a': dir = LEFT;
@@ -57,7 +57,7 @@ void Input() {
 
 }
 
-void Logic() {
+void Logic() {	//Handling the snake movement through the logic
 	switch (dir)
 	{
 	case LEFT: x--;
@@ -71,7 +71,7 @@ void Logic() {
 		default:
 			break;
 	}
-	if (x == fruitX && y == fruitY) {
+	if (x == fruitX && y == fruitY) {	//When the fruit is eaten then this randomises the next location of the fruit
 		score += 10;
 		fruitX = rand() % width + 1;
 		fruitY = rand() % height + 1;
@@ -80,7 +80,7 @@ void Logic() {
 		gameOver = true;
 }
 
-int main() {
+int main() {	//The program exexution starts here calling all the funtions
 	Startup();
 	while (!gameOver) {
 		Draw();
